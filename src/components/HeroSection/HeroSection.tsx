@@ -5,15 +5,27 @@ import {
   Button,
   createStyles,
   Grid,
+  Image,
 } from "@mantine/core";
+import HeroImg from "assets/images/programming-bro.png";
 
-const useStyles = createStyles((theme) => ({}));
+const useStyles = createStyles((theme) => ({
+  button: {
+    fontSize: 16,
+  },
+
+  alignCenter: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
 
 const HeroSection = () => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
-    <Container size="md">
+    <Container size="lg">
       <Grid>
         <Grid.Col span={6}>
           <Title order={3} color="dimmed" mt={128}>
@@ -25,14 +37,25 @@ const HeroSection = () => {
           <Title order={3} color="dimmed" mt={12}>
             Web Developer with UI/UX Expertise
           </Title>
-          <Text size="md" mt={24}>
-            My work emphasizes creating elegant and user-centered solutions for
-            web and mobile. Have a look and let's discuss how I can help you
-            with your next project.
-          </Text>
-          <Button size="lg" mt={32}>
+          <Grid.Col span={9}>
+            <Text size="md" mt={24}>
+              My work emphasizes creating elegant and user-centered solutions
+              for web and mobile. Have a look and let's discuss how I can help
+              you with your next project.
+            </Text>
+          </Grid.Col>
+          <Button
+            size="lg"
+            mt={32}
+            component="a"
+            href="/#work"
+            className={classes.button}
+          >
             See my Work
           </Button>
+        </Grid.Col>
+        <Grid.Col span={6} className={classes.alignCenter}>
+          <Image src={HeroImg} alt="male programming on a computer" mt={48} />
         </Grid.Col>
       </Grid>
     </Container>

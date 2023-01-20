@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mantine/core";
 
-const pages = ["Home", "About", "Contact"];
+const pages = ["Home", "About", "Work", "Contact"];
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <MantineHeader height={80} className={classes.header}>
-      <Container size="md" className={classes.inner}>
+      <Container size="lg" className={classes.inner}>
         <Box className={classes.brandContainer}>
           <Anchor href="/#home" className={classes.brand}>
             <Title>RZV</Title>

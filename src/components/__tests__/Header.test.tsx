@@ -24,6 +24,12 @@ describe("header", () => {
     expect(aboutLink).toHaveAttribute("href", "/#about");
   });
 
+  test("if it renders a link to my work", () => {
+    setup();
+    const workLink = screen.getByRole("link", { name: /work/i });
+    expect(workLink).toHaveAttribute("href", "/#work");
+  });
+
   test("if it renders a contact link", () => {
     setup();
     const contactLink = screen.getByRole("link", { name: /contact/i });
