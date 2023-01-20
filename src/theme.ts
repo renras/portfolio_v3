@@ -50,13 +50,6 @@ const theme: MantineThemeOverride = {
     Textarea: customLabel,
     Autocomplete: customLabel,
   },
-  globalStyles: (theme) => ({
-    body: {
-      ...theme.fn.fontStyles(),
-      backgroundColor:
-        theme.colorScheme === "dark" ? theme.colors.dark : "#F8F8F8",
-    },
-  }),
 };
 
 export default theme;

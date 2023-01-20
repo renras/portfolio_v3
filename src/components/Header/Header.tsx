@@ -10,7 +10,7 @@ import {
 
 const pages = ["Home", "About", "Contact"];
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   header: {
     display: "flex",
     alignItems: "center",
@@ -39,6 +39,10 @@ const useStyles = createStyles(() => ({
 
   links: {
     color: "#444746",
+
+    "&:hover": {
+      backgroundColor: theme.colors.gray[1],
+    },
   },
 }));
 
@@ -47,9 +51,9 @@ const Header = () => {
 
   return (
     <MantineHeader height={80} className={classes.header}>
-      <Container size="xl" className={classes.inner}>
+      <Container size="md" className={classes.inner}>
         <Box className={classes.brandContainer}>
-          <Anchor href="#home" className={classes.brand}>
+          <Anchor href="/#home" className={classes.brand}>
             <Title>RZV</Title>
           </Anchor>
         </Box>
@@ -58,7 +62,7 @@ const Header = () => {
             <Button
               key={page}
               component="a"
-              href={`#${page.toLowerCase()}`}
+              href={`/#${page.toLowerCase()}`}
               variant="subtle"
               className={classes.links}
             >
