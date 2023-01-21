@@ -33,4 +33,21 @@ describe("hero section", () => {
     });
     expect(heroImg).toBeInTheDocument();
   });
+
+  test("if it renders a link to my github profile", () => {
+    setup();
+    const githubLink = screen.getByRole("link", { name: /github profile/i });
+    expect(githubLink).toHaveAttribute("href", "https://github.com/renras");
+  });
+
+  test("if it renders a link to my linkedin profile", () => {
+    setup();
+    const linkedinLink = screen.getByRole("link", {
+      name: /linkedin profile/i,
+    });
+    expect(linkedinLink).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/renzo-visperas-55353321a/"
+    );
+  });
 });

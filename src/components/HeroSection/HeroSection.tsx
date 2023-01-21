@@ -6,8 +6,12 @@ import {
   createStyles,
   Grid,
   Image,
+  Box,
+  ActionIcon,
 } from "@mantine/core";
 import HeroImg from "assets/images/programming-bro.png";
+import githubIcon from "assets/icons/github.svg";
+import linkedinIcon from "assets/icons/linkedin.svg";
 
 const useStyles = createStyles((theme) => ({
   button: {
@@ -18,6 +22,12 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  buttonGroup: {
+    display: "flex",
+    gap: "16px",
+    marginTop: "48px",
   },
 }));
 
@@ -53,6 +63,18 @@ const HeroSection = () => {
           >
             See my Work
           </Button>
+
+          <Box className={classes.buttonGroup}>
+            <ActionIcon component="a" href="https://github.com/renras">
+              <img src={githubIcon} alt="github profile" />
+            </ActionIcon>
+            <ActionIcon
+              component="a"
+              href="https://www.linkedin.com/in/renzo-visperas-55353321a/"
+            >
+              <img src={linkedinIcon} alt="linkedin profile" />
+            </ActionIcon>
+          </Box>
         </Grid.Col>
         <Grid.Col span={6} className={classes.alignCenter}>
           <Image src={HeroImg} alt="male programming on a computer" mt={48} />
