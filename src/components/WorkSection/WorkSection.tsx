@@ -4,14 +4,12 @@ import {
   Box,
   createStyles,
   Button,
-  Card,
-  Text,
-  Image,
   Grid,
+  Text,
 } from "@mantine/core";
 import { useState } from "react";
 import projects from "data.json";
-import { truncate } from "lodash";
+import Card from "components/Card/Card";
 
 const useStyles = createStyles((theme) => ({
   buttonGroup: {
@@ -31,6 +29,10 @@ const useStyles = createStyles((theme) => ({
   active: {
     backgroundColor: theme.colors.gray[1],
   },
+
+  dimmed: {
+    color: theme.colors.gray[6],
+  },
 }));
 
 const buttons = ["All", "Web Development", "UI/UX Design"];
@@ -39,8 +41,12 @@ const WorkSection = () => {
   const { classes } = useStyles();
   const [activeTab, setActiveTab] = useState("All");
 
+  const webDevelopmentProjects = projects.filter(
+    (project) => project.category === "Web Development"
+  );
+
   return (
-    <Container size="lg" mt={96}>
+    <Container size="lg" mt={96} id="work">
       <Title align="center">Some of My Latest Work</Title>
       <Box className={classes.buttonGroup} mt={64}>
         {buttons.map((button) => (
@@ -48,7 +54,7 @@ const WorkSection = () => {
             key={button}
             variant="subtle"
             className={`${classes.button} ${
-              activeTab === button && classes.active
+              activeTab === button ? classes.active : classes.dimmed
             }`}
             onClick={() => setActiveTab(button)}
           >
@@ -57,35 +63,21 @@ const WorkSection = () => {
         ))}
       </Box>
       <Grid mt={96}>
-        {projects.map((project) => (
-          <Grid.Col span={4} key={project.title}>
-            <Card shadow="sm" p="lg" radius="md" withBorder>
-              <Card.Section>
-                <Image src={project.img} height={160} alt="image of project" />
-              </Card.Section>
+        {activeTab === "All" &&
+          projects.map((project) => (
+            <Grid.Col span={4} key={project.title}>
+              <Card project={project} />
+            </Grid.Col>
+          ))}
 
-              <Text weight={600} mt={24}>
-                Norway Fjord Adventures
-              </Text>
+        {activeTab === "Web Development" &&
+          webDevelopmentProjects.map((project) => (
+            <Grid.Col span={4} key={project.title}>
+              <Card project={project} />
+            </Grid.Col>
+          ))}
 
-              <Text size="sm" color="dimmed" mt="xs">
-                {truncate(project.description, { length: 100 })}
-              </Text>
-
-              <Button
-                component="a"
-                variant="light"
-                color="blue"
-                fullWidth
-                mt="lg"
-                radius="md"
-                href={project.link}
-              >
-                View Project
-              </Button>
-            </Card>
-          </Grid.Col>
-        ))}
+        {activeTab === "UI/UX Design" && <Text mih={359}>Coming Soon</Text>}
       </Grid>
     </Container>
   );

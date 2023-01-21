@@ -20,10 +20,9 @@ const AboutMeSection = () => {
           </Text>
 
           <Text mt={24}>
-            I have almost a year of professional experience working for Sta.
-            Clara International Corporation where I was responsible for
-            developing software to support the company's operations. I have
-            received positive feedback from clients on my work.
+            I work for Sta. Clara International Corporation where I am
+            responsible for developing software to support the company's
+            operations. I have received positive feedback from peers on my work.
           </Text>
 
           <Text mt={24}>
