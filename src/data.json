@@ -1,0 +1,23 @@
+[
+  {
+    "title": "REST Countries API",
+    "img": "https://i.ibb.co/xJG8xRK/rest-countries-api.png",
+    "description": "Built using React and Redux. It pulls data from the REST Countries API. It also features a color theme switcher.",
+    "link": "https://renras.github.io/rest-countries-api/",
+    "category": "Web Development"
+  },
+  {
+    "title": "E-commerce Product Page",
+    "img": "https://i.ibb.co/QmXwZwT/e-commerce-product-page.png",
+    "description": "Product page built using React, Redux, Typescript, and TailwindCSS. It features a lightbox product gallery and cart functionality.",
+    "link": "https://renras.github.io/e-commerce-product-page/",
+    "category": "Web Development"
+  },
+  {
+    "title": "Sunnyside Agency Landing Page",
+    "img": "https://i.ibb.co/64QY7xd/sunnside-agency-landing-page-main.png",
+    "description": "Fully responsive landing page using vanilla Javascript that follows the \"mobile first\" approach. The styles are written in SASS.",
+    "link": "https://renras.github.io/sunnyside-agency-landing-page-main/",
+    "category": "Web Development"
+  }
+]

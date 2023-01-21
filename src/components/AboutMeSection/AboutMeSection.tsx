@@ -5,7 +5,7 @@ const AboutMeSection = () => {
   return (
     <Container size="lg" mt={96} id="about">
       <Title align="center">About Me</Title>
-      <Grid>
+      <Grid mt={48}>
         <Grid.Col span={6}>
           <Image src={aboutMeImg} alt="User typing on a keyboard" />
         </Grid.Col>

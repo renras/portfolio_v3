@@ -1,6 +1,7 @@
 import Header from "components/Header/Header";
 import HeroSection from "components/HeroSection/HeroSection";
 import AboutMeSection from "components/AboutMeSection/AboutMeSection";
+import WorkSection from "components/WorkSection/WorkSection";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <HeroSection />
       <AboutMeSection />
+      <WorkSection />
     </div>
   );
 }
