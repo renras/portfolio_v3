@@ -13,7 +13,7 @@ import HeroImg from "assets/images/programming-bro.png";
 import githubIcon from "assets/icons/github.svg";
 import linkedinIcon from "assets/icons/linkedin.svg";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   button: {
     fontSize: 16,
   },
@@ -35,7 +35,7 @@ const HeroSection = () => {
   const { classes } = useStyles();
 
   return (
-    <Container size="lg">
+    <Container size="lg" id="home">
       <Grid>
         <Grid.Col span={6}>
           <Title order={3} color="dimmed" mt={128}>
