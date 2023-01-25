@@ -4,6 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fontsource/poppins";
 import "@fontsource/montserrat";
+import "@fontsource/noto-sans";
 import { MantineProvider } from "@mantine/core";
 import theme from "./theme";
 
