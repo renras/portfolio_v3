@@ -51,4 +51,16 @@ describe("contact section", () => {
     });
     expect(emailImage).toBeInTheDocument();
   });
+
+  test("if it renders my phone number", () => {
+    setup();
+    const phoneNumber = screen.getByText(/[+]63 945 582 0565/i);
+    expect(phoneNumber).toBeInTheDocument();
+  });
+
+  test("if it renders my email address", () => {
+    setup();
+    const emailAddress = screen.getByText(/renzovisperas07@gmail.com/i);
+    expect(emailAddress).toBeInTheDocument();
+  });
 });
