@@ -6,7 +6,9 @@ import {
   Button,
   Textarea,
   createStyles,
+  Image,
 } from "@mantine/core";
+import mailSent from "assets/images/mail-sent.png";
 
 const useStyles = createStyles(() => ({
   button: {},
@@ -18,8 +20,8 @@ const ContactSection = () => {
   return (
     <Container size="lg" id="contact" mt={96}>
       <Title align="center">Contact Me</Title>
-      <Grid mt={96}>
-        <Grid.Col span={6}>
+      <Grid mt={30}>
+        <Grid.Col span={6} mt={80}>
           <form>
             <TextInput label="Name" size="lg" mt={16} />
             <TextInput label="Email" type="email" size="lg" mt={16} />
@@ -30,7 +32,9 @@ const ContactSection = () => {
             </Button>
           </form>
         </Grid.Col>
-        <Grid.Col span={6}></Grid.Col>
+        <Grid.Col span={6}>
+          <Image src={mailSent} alt="user sending an email" />
+        </Grid.Col>
       </Grid>
     </Container>
   );

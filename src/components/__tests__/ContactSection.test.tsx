@@ -43,4 +43,12 @@ describe("contact section", () => {
     });
     expect(sendMessageButton).toBeInTheDocument();
   });
+
+  test("if it renders an image of a user sending an email", () => {
+    setup();
+    const emailImage = screen.getByRole("img", {
+      name: /user sending an email/i,
+    });
+    expect(emailImage).toBeInTheDocument();
+  });
 });
