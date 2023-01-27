@@ -3,6 +3,10 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ToastContainer } from "react-toastify";
 
+jest.mock("@emailjs/browser", () => ({
+  sendForm: jest.fn(),
+}));
+
 const setup = () => {
   render(
     <div>
@@ -80,6 +84,26 @@ describe("contact section", () => {
     const toastMessage = await screen.findByText(
       /please fill up all the fields/i
     );
+    expect(toastMessage).toBeInTheDocument();
+  });
+
+  test("if it renders a success toast message when submitting a form with all the fields filled up", async () => {
+    setup();
+    const nameInput = screen.getByRole("textbox", { name: /name/i });
+    const emailInput = screen.getByLabelText(/email/i);
+    const subjectInput = screen.getByRole("textbox", { name: /subject/i });
+    const messageInput = screen.getByRole("textbox", { name: /message/i });
+    const sendMessageButton = screen.getByRole("button", {
+      name: /send message/i,
+    });
+
+    userEvent.type(nameInput, "Renzovisperas");
+    userEvent.type(emailInput, "renzovisperas07@gmail.com");
+    userEvent.type(subjectInput, "Hello");
+    userEvent.type(messageInput, "Hello World");
+    userEvent.click(sendMessageButton);
+
+    const toastMessage = await screen.findByText(/message sent successfully/i);
     expect(toastMessage).toBeInTheDocument();
   });
 });

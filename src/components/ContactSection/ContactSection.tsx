@@ -77,6 +77,19 @@ const showSuccessToast = (message: string) => {
   });
 };
 
+const showErrorToast = (message: string) => {
+  toast.error(message, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
 const ContactSection = () => {
   const { classes } = useStyles();
   const { register, handleSubmit, reset } = useForm<FormData>();
@@ -94,8 +107,9 @@ const ContactSection = () => {
       !process.env.REACT_APP_SERVICE_ID ||
       !process.env.REACT_APP_TEMPLATE_ID ||
       !process.env.REACT_APP_PUBLIC_KEY
-    )
+    ) {
       return;
+    }
 
     if (!form.current) return;
 
@@ -112,6 +126,7 @@ const ContactSection = () => {
       showSuccessToast("Message sent successfully!");
     } catch (error) {
       console.log(error);
+      showErrorToast("Something went wrong. Please try again later.");
     } finally {
       setIsSendingMessage(false);
     }
