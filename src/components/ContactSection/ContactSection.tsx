@@ -15,6 +15,8 @@ import mail from "assets/icons/mail.svg";
 import phone from "assets/icons/phone.svg";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const useStyles = createStyles(() => ({
   flex: {
@@ -49,31 +51,63 @@ type FormData = {
   message: string;
 };
 
+const showWarningToast = (message: string) => {
+  toast.warn(message, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
+const showSuccessToast = (message: string) => {
+  toast.success(message, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+};
+
 const ContactSection = () => {
   const { classes } = useStyles();
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
 
-  const showWarningToast = (message: string) => {
-    toast.warn(message, {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     const { name, email, subject, message } = data;
     if (!name || !email || !subject || !message) {
       showWarningToast("Please fill up all the fields");
       return;
     }
 
-    console.log(data);
+    if (!form.current) return;
+
+    try {
+      setIsSendingMessage(true);
+      await emailjs.sendForm(
+        "service_yny6rtg",
+        "template_lutz4qr",
+        form.current,
+        "nwbcoDLTBTvMU-vIp"
+      );
+
+      reset();
+      showSuccessToast("Message sent successfully!");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSendingMessage(false);
+    }
   });
 
   return (
@@ -82,7 +116,7 @@ const ContactSection = () => {
         <Title align="center">Contact Me</Title>
         <Grid mt={30}>
           <Grid.Col span={6} mt={80}>
-            <form onSubmit={onSubmit}>
+            <form ref={form} onSubmit={onSubmit}>
               <TextInput label="Name" size="lg" mt={16} {...register("name")} />
               <TextInput
                 label="Email"
@@ -100,10 +134,16 @@ const ContactSection = () => {
               <Textarea
                 label="Message"
                 size="lg"
+                minRows={3}
                 mt={16}
                 {...register("message")}
               />
-              <Button type="submit" size="lg" mt={32}>
+              <Button
+                type="submit"
+                size="lg"
+                mt={32}
+                loading={isSendingMessage}
+              >
                 Send Message
               </Button>
             </form>
