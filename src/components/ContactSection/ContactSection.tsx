@@ -13,7 +13,7 @@ import {
 import mailSent from "assets/images/mail-sent.png";
 import mail from "assets/icons/mail.svg";
 import phone from "assets/icons/phone.svg";
-import { Notification } from "@mantine/core";
+import { toast } from "react-toastify";
 
 const useStyles = createStyles(() => ({
   flex: {
@@ -55,7 +55,25 @@ const ContactSection = () => {
               <TextInput label="Email" type="email" size="lg" mt={16} />
               <TextInput label="Subject" size="lg" mt={16} />
               <Textarea label="Message" size="lg" mt={16} />
-              <Button size="lg" mt={32}>
+              <Button
+                size="lg"
+                mt={32}
+                onClick={() =>
+                  toast.warn(
+                    "Please fill in all the details to send a message",
+                    {
+                      position: "bottom-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    }
+                  )
+                }
+              >
                 Send Message
               </Button>
             </form>
@@ -75,9 +93,6 @@ const ContactSection = () => {
           </Grid.Col>
         </Grid>
       </Container>
-      <Notification color="yellow" className={classes.notification}>
-        Please fill out all the details to send a message.
-      </Notification>
     </>
   );
 };

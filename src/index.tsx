@@ -7,6 +7,7 @@ import "@fontsource/montserrat";
 import "@fontsource/noto-sans";
 import { MantineProvider } from "@mantine/core";
 import theme from "./theme";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
