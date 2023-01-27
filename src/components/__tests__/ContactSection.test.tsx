@@ -1,8 +1,15 @@
 import ContactSection from "components/ContactSection/ContactSection";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { ToastContainer } from "react-toastify";
 
 const setup = () => {
-  render(<ContactSection />);
+  render(
+    <div>
+      <ToastContainer />
+      <ContactSection />
+    </div>
+  );
 };
 
 describe("contact section", () => {
@@ -62,5 +69,17 @@ describe("contact section", () => {
     setup();
     const emailAddress = screen.getByText(/renzovisperas07@gmail.com/i);
     expect(emailAddress).toBeInTheDocument();
+  });
+
+  test("if it renders a warning toast message when submitting a form with an empty field", async () => {
+    setup();
+    const sendMessageButton = screen.getByRole("button", {
+      name: /send message/i,
+    });
+    userEvent.click(sendMessageButton);
+    const toastMessage = await screen.findByText(
+      /please fill up all the fields/i
+    );
+    expect(toastMessage).toBeInTheDocument();
   });
 });

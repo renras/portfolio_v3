@@ -14,6 +14,7 @@ import mailSent from "assets/images/mail-sent.png";
 import mail from "assets/icons/mail.svg";
 import phone from "assets/icons/phone.svg";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const useStyles = createStyles(() => ({
   flex: {
@@ -41,8 +42,39 @@ const useStyles = createStyles(() => ({
   },
 }));
 
+type FormData = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
 const ContactSection = () => {
   const { classes } = useStyles();
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const showWarningToast = (message: string) => {
+    toast.warn(message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const onSubmit = handleSubmit((data) => {
+    const { name, email, subject, message } = data;
+    if (!name || !email || !subject || !message) {
+      showWarningToast("Please fill up all the fields");
+      return;
+    }
+
+    console.log(data);
+  });
 
   return (
     <>
@@ -50,30 +82,28 @@ const ContactSection = () => {
         <Title align="center">Contact Me</Title>
         <Grid mt={30}>
           <Grid.Col span={6} mt={80}>
-            <form>
-              <TextInput label="Name" size="lg" mt={16} />
-              <TextInput label="Email" type="email" size="lg" mt={16} />
-              <TextInput label="Subject" size="lg" mt={16} />
-              <Textarea label="Message" size="lg" mt={16} />
-              <Button
+            <form onSubmit={onSubmit}>
+              <TextInput label="Name" size="lg" mt={16} {...register("name")} />
+              <TextInput
+                label="Email"
+                type="email"
                 size="lg"
-                mt={32}
-                onClick={() =>
-                  toast.warn(
-                    "Please fill in all the details to send a message",
-                    {
-                      position: "bottom-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "light",
-                    }
-                  )
-                }
-              >
+                mt={16}
+                {...register("email")}
+              />
+              <TextInput
+                label="Subject"
+                size="lg"
+                mt={16}
+                {...register("subject")}
+              />
+              <Textarea
+                label="Message"
+                size="lg"
+                mt={16}
+                {...register("message")}
+              />
+              <Button type="submit" size="lg" mt={32}>
                 Send Message
               </Button>
             </form>
