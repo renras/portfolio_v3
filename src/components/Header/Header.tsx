@@ -19,13 +19,19 @@ const useStyles = createStyles((theme) => ({
   inner: {
     flex: 1,
     display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+
+    [`@media (min-width: ${theme.breakpoints.xs}px)`]: {
+      flexDirection: "row",
+    },
   },
 
   brandContainer: {
     flex: 1,
   },
 
-  brand: {
+  brandLink: {
     ":hover": {
       textDecoration: "none",
     },
@@ -50,11 +56,11 @@ const Header = () => {
   const { classes } = useStyles();
 
   return (
-    <MantineHeader height={80} className={classes.header}>
+    <MantineHeader height={{ base: 128, xs: 80 }} className={classes.header}>
       <Container size="lg" className={classes.inner}>
         <Box className={classes.brandContainer}>
-          <Anchor href="/#home" className={classes.brand}>
-            <Title>RZV</Title>
+          <Anchor href="/#home" className={classes.brandLink}>
+            <Title weight={700}>RZV</Title>
           </Anchor>
         </Box>
         <nav className={classes.nav}>
