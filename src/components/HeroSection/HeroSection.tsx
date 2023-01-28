@@ -13,9 +13,17 @@ import HeroImg from "assets/images/programming-bro.png";
 import githubIcon from "assets/icons/github.svg";
 import linkedinIcon from "assets/icons/linkedin.svg";
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   button: {
     fontSize: 16,
+  },
+
+  heroImgContainer: {
+    display: "none!important",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: "block !important",
+    },
   },
 
   alignCenter: {
@@ -37,7 +45,7 @@ const HeroSection = () => {
   return (
     <Container size="lg" id="home">
       <Grid>
-        <Grid.Col span={6}>
+        <Grid.Col span={12} md={6}>
           <Title order={3} color="dimmed" mt={128}>
             Hi
           </Title>
@@ -47,7 +55,7 @@ const HeroSection = () => {
           <Title order={3} color="dimmed" mt={12}>
             Web Developer with UI/UX Expertise
           </Title>
-          <Grid.Col span={9}>
+          <Grid.Col span={12} xs={9}>
             <Text size="md" mt={24}>
               My work emphasizes creating elegant and user-centered solutions
               for web and mobile. Have a look and let's discuss how I can help
@@ -76,7 +84,10 @@ const HeroSection = () => {
             </ActionIcon>
           </Box>
         </Grid.Col>
-        <Grid.Col span={6} className={classes.alignCenter}>
+        <Grid.Col
+          md={6}
+          className={`${classes.heroImgContainer} ${classes.alignCenter}`}
+        >
           <Image src={HeroImg} alt="male programming on a computer" mt={48} />
         </Grid.Col>
       </Grid>
