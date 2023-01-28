@@ -22,7 +22,7 @@ import {
   showSuccessToast,
 } from "utils/toast";
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   flex: {
     display: "flex",
     gap: 16,
@@ -37,14 +37,39 @@ const useStyles = createStyles(() => ({
     gap: 24,
   },
 
+  contactDetailsMobile: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 24,
+    marginTop: "64px",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: "none",
+    },
+  },
+
   imgWrapper: {
     position: "relative",
+    display: "none",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: "block",
+    },
   },
 
   notification: {
     position: "fixed",
     bottom: 32,
     right: 32,
+  },
+
+  sendMessageButton: {
+    width: "100%",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      width: "auto",
+    },
   },
 }));
 
@@ -101,8 +126,8 @@ const ContactSection = () => {
     <>
       <Container size="lg" id="contact" mt={128} pb={64}>
         <Title align="center">Contact Me</Title>
-        <Grid mt={30}>
-          <Grid.Col span={6} mt={80}>
+        <Grid mt={{ base: 32, md: 30 }}>
+          <Grid.Col span={12} md={6} mt={{ base: 0, md: 80 }}>
             <form ref={form} onSubmit={onSubmit}>
               <TextInput label="Name" size="lg" mt={16} {...register("name")} />
               <TextInput
@@ -126,6 +151,7 @@ const ContactSection = () => {
                 {...register("message")}
               />
               <Button
+                className={classes.sendMessageButton}
                 type="submit"
                 size="lg"
                 mt={32}
@@ -134,6 +160,17 @@ const ContactSection = () => {
                 Send Message
               </Button>
             </form>
+
+            <Box className={classes.contactDetailsMobile}>
+              <Box className={classes.flex}>
+                <Image src={phone} alt="phone" width={24} height={24} />
+                <Text>+63 945 582 0565</Text>
+              </Box>
+              <Box className={classes.flex}>
+                <Image src={mail} alt="email" width={24} height={24} />
+                <Text>renzovisperas07@gmail.com</Text>
+              </Box>
+            </Box>
           </Grid.Col>
           <Grid.Col span={6} className={classes.imgWrapper}>
             <Image src={mailSent} alt="user sending an email" />

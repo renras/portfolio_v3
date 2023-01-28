@@ -14,8 +14,13 @@ import Card from "components/Card/Card";
 const useStyles = createStyles((theme) => ({
   buttonGroup: {
     display: "flex",
+    flexDirection: "column",
     gap: "16px",
     justifyContent: "center",
+
+    [`@media (min-width: ${theme.breakpoints.xs}px)`]: {
+      flexDirection: "row",
+    },
   },
 
   button: {
