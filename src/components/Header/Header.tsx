@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mantine/core";
 
-const pages = ["Home", "About", "Work", "Contact"];
+const pages = ["About", "Work", "Contact"];
 
 const useStyles = createStyles((theme) => ({
   header: {
