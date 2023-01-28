@@ -30,7 +30,7 @@ const useStyles = createStyles(() => ({
 
   contactDetails: {
     position: "absolute",
-    bottom: 45,
+    bottom: 96,
     left: 72,
     display: "flex",
     flexDirection: "column",
