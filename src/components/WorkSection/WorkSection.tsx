@@ -65,14 +65,14 @@ const WorkSection = () => {
       <Grid mt={96}>
         {activeTab === "All" &&
           projects.map((project) => (
-            <Grid.Col span={4} key={project.title}>
+            <Grid.Col span={12} xs={6} md={4} key={project.title}>
               <Card project={project} />
             </Grid.Col>
           ))}
 
         {activeTab === "Web Development" &&
           webDevelopmentProjects.map((project) => (
-            <Grid.Col span={4} key={project.title}>
+            <Grid.Col span={12} xs={6} md={4} key={project.title}>
               <Card project={project} />
             </Grid.Col>
           ))}
