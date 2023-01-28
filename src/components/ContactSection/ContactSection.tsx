@@ -13,10 +13,14 @@ import {
 import mailSent from "assets/images/mail-sent.png";
 import mail from "assets/icons/mail.svg";
 import phone from "assets/icons/phone.svg";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import {
+  showErrorToast,
+  showWarningToast,
+  showSuccessToast,
+} from "utils/toast";
 
 const useStyles = createStyles(() => ({
   flex: {
@@ -49,45 +53,6 @@ type FormData = {
   email: string;
   subject: string;
   message: string;
-};
-
-const showWarningToast = (message: string) => {
-  toast.warn(message, {
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
-const showSuccessToast = (message: string) => {
-  toast.success(message, {
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
-};
-
-const showErrorToast = (message: string) => {
-  toast.error(message, {
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-  });
 };
 
 const ContactSection = () => {
