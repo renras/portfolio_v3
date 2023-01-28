@@ -1,16 +1,35 @@
-import { Container, Title, Grid, Text, Image } from "@mantine/core";
+import {
+  Container,
+  Title,
+  Grid,
+  Text,
+  Image,
+  createStyles,
+} from "@mantine/core";
 import aboutMeImg from "assets/images/typing-bro.png";
 
+const useStyles = createStyles((theme) => ({
+  imgContainer: {
+    display: "none!important",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      display: "block !important",
+    },
+  },
+}));
+
 const AboutMeSection = () => {
+  const { classes } = useStyles();
+
   return (
     <Container size="lg" mt={96} id="about">
       <Title align="center">About Me</Title>
-      <Grid mt={48}>
-        <Grid.Col span={6}>
+      <Grid mt={{ base: 0, md: 48 }}>
+        <Grid.Col span={6} className={classes.imgContainer}>
           <Image src={aboutMeImg} alt="User typing on a keyboard" />
         </Grid.Col>
-        <Grid.Col span={6}>
-          <Text mt={96}>
+        <Grid.Col span={12} md={6}>
+          <Text mt={{ base: 48, md: 96 }}>
             Hello, my name is Renzo Visperas and I am a full stack developer
             with a passion for creating beautiful and user-friendly experiences.
             I have experience in programming languages including JavaScript and

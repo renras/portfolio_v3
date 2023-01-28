@@ -14,6 +14,14 @@ import githubIcon from "assets/icons/github.svg";
 import linkedinIcon from "assets/icons/linkedin.svg";
 
 const useStyles = createStyles((theme) => ({
+  container: {
+    textAlign: "center",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      textAlign: "left",
+    },
+  },
+
   button: {
     fontSize: 16,
   },
@@ -36,6 +44,11 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     gap: "16px",
     marginTop: "48px",
+    justifyContent: "center",
+
+    [`@media (min-width: ${theme.breakpoints.md}px)`]: {
+      justifyContent: "flex-start",
+    },
   },
 }));
 
@@ -43,7 +56,7 @@ const HeroSection = () => {
   const { classes } = useStyles();
 
   return (
-    <Container size="lg" id="home">
+    <Container size="lg" id="home" className={classes.container}>
       <Grid>
         <Grid.Col span={12} md={6}>
           <Title order={3} color="dimmed" mt={128}>
@@ -55,7 +68,7 @@ const HeroSection = () => {
           <Title order={3} color="dimmed" mt={12}>
             Web Developer with UI/UX Expertise
           </Title>
-          <Grid.Col span={12} xs={9}>
+          <Grid.Col span={12} md={9}>
             <Text size="md" mt={24}>
               My work emphasizes creating elegant and user-centered solutions
               for web and mobile. Have a look and let's discuss how I can help
